@@ -3,6 +3,8 @@ package com.todo.todo.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +23,7 @@ public class User {
 	private String email;
 	private String password;
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	@JsonManagedReference
 //	@JoinColumn(name="todoId",referencedColumnName = "todoId")
 	private List<Todo> todoList=new ArrayList<>();
 }
