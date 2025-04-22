@@ -37,4 +37,35 @@ public class TodoService {
 		}
 		return todoList=user.getTodoList();
 	}
+	
+	public void deleteTodo(int todoId)
+	{
+		Todo todo= todoRepo.findById(todoId);
+		todoRepo.delete(todo);
+	}
+	
+	public Todo updateTodo(Todo todo, int todoId)
+	{
+		Todo oldTodo= todoRepo.findById(todoId);
+		if(oldTodo == null)
+			throw new IllegalArgumentException("Todo with id " + todoId + " not found");
+		if(todo.getTitle()!=null)
+		{
+			oldTodo.setTitle(todo.getTitle());
+		}
+		if(todo.getDescription()!=null)
+		{
+			oldTodo.setDescription(todo.getDescription());
+		}
+		if(todo.getStatus()!=null)
+		{
+			oldTodo.setStatus(todo.getStatus());
+		}
+		if(todo.getTaskDate()!=null)
+		{
+			oldTodo.setTaskDate(todo.getTaskDate());
+		}
+		
+		return todoRepo.save(oldTodo);
+	}
 }
