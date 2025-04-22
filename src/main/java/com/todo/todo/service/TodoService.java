@@ -37,7 +37,6 @@ public class TodoService {
 		}
 		return todoList=user.getTodoList();
 	}
-	
 	public void deleteTodo(int todoId)
 	{
 		Todo todo= todoRepo.findById(todoId);
